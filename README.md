@@ -1,8 +1,8 @@
-# IELTS 9.0 — Proofread & simplified v26
+# IELTS 9.0 — Curated phrases & estimated bands v28
 
 - 682 entries across six sections.
-- Full spelling/OCR and punctuation audit.
-- Generated answers simplified with direct positions, clear paragraph logic and topic-specific examples.
-- Severely damaged or generic essays rewritten.
-- Key phrases remain highlighted in blue with Vietnamese meanings.
+- Highlighting rebuilt from the final answer text: only useful collocations, functional language and precise topic vocabulary remain.
+- Every highlighted expression has a normalised Vietnamese meaning.
+- Estimated IELTS band shown after every writing response, Speaking Part 2 response, and every individual Speaking Part 1/3 answer.
+- Speaking estimates assume fluent delivery and accurate pronunciation.
 - Compact GitHub Pages structure; upload the extracted files, not the ZIP itself.

@@ -36,12 +36,16 @@
  const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
  const palette=['#1d4ed8','#2563eb','#0284c7','#0369a1','#3b82f6','#1e40af'];
  function color(s){const c=(cleanText(s)[0]||'A').toUpperCase().charCodeAt(0);const idx=Math.max(0,Math.min(5,Math.floor((c-65)/5)));return palette[idx]}
- function answerHtml(value){
+ const bandHtml=b=>b?`<div class="band-score"><em>Band ${esc(b)}</em></div>`:'';
+ function answerHtml(value,qaBands=[]){
    const raw=String(value||'').trim();
    if(/(^|\n)Q:\s/m.test(raw)){
+     let bandIndex=0;
      return raw.split(/\n{2,}/).filter(Boolean).map(block=>{
        const m=block.match(/^Q:\s*([\s\S]*?)\nA:\s*([\s\S]*)$/);
-       return m?`<p class="q">${esc(cleanText(m[1]))}</p><p>${rich(m[2])}</p>`:`<p>${rich(block)}</p>`;
+       if(!m)return `<p>${rich(block)}</p>`;
+       const band=qaBands[bandIndex++]||'';
+       return `<p class="q">${esc(cleanText(m[1]))}</p><p>${rich(m[2])}</p>${bandHtml(band)}`;
      }).join('');
    }
    return raw.split(/\n{2,}/).filter(Boolean).map(p=>`<p>${rich(p)}</p>`).join('');
@@ -63,7 +67,7 @@
  function visualHtml(v){if(!v||!v.images||!v.images.length)return'';return`<div class="visuals">${v.images.map(key=>{const src=(window.IELTS_VISUALS&&window.IELTS_VISUALS[key])||key;return`<img src="${esc(src)}" alt="Biểu đồ hoặc hình minh họa của đề bài" loading="eager" decoding="async">`}).join('')}</div>`}
  function open(id){
    const x=byId.get(id);if(!x)return;const c=color(x.topic),idx=visible.findIndex(y=>y.id===id);
-   detail.innerHTML=`<div class="detail-top"><strong>${esc(x._displayNo)}</strong><div class="detail-actions"><button class="icon" id="prev" aria-label="Bài trước">←</button><button class="icon" id="next" aria-label="Bài sau">→</button><button class="icon" id="close" aria-label="Đóng">✕</button></div></div><main class="detail-main">${cleanText(x.title||x.topic).toLowerCase()===cleanText(x.topic).toLowerCase()?'':`<div class="kicker" style="--topic:${c}">${esc(cleanText(x.topic))}</div>`}<h2>${esc(cleanText(x.title||x.topic))}</h2><div class="meta"><span>Tác giả: <b>${esc(cleanText(x.author||'Không xác định'))}</b></span>${x.source?`<span>Nguồn: ${esc(cleanText(x.source))}</span>`:''}</div><h3 class="section-label">Đề bài</h3><div class="prompt" style="--topic:${c}">${esc(cleanText(x.prompt||''))}</div>${visualHtml(x.visual)}<h3 class="section-label">Câu trả lời</h3><div class="answer">${answerHtml(x.answer||'')}</div>${x.phrases&&x.phrases.length?`<h3 class="section-label">Cụm từ nổi bật và giải nghĩa</h3><div class="phrases">${x.phrases.map(p=>`<div class="phrase"><b>${esc(cleanText(p.en))}</b><span>${esc(cleanText(p.vi))}</span></div>`).join('')}</div>`:''}</main>`;
+   detail.innerHTML=`<div class="detail-top"><strong>${esc(x._displayNo)}</strong><div class="detail-actions"><button class="icon" id="prev" aria-label="Bài trước">←</button><button class="icon" id="next" aria-label="Bài sau">→</button><button class="icon" id="close" aria-label="Đóng">✕</button></div></div><main class="detail-main">${cleanText(x.title||x.topic).toLowerCase()===cleanText(x.topic).toLowerCase()?'':`<div class="kicker" style="--topic:${c}">${esc(cleanText(x.topic))}</div>`}<h2>${esc(cleanText(x.title||x.topic))}</h2><div class="meta"><span>Tác giả: <b>${esc(cleanText(x.author||'Không xác định'))}</b></span>${x.source?`<span>Nguồn: ${esc(cleanText(x.source))}</span>`:''}</div><h3 class="section-label">Đề bài</h3><div class="prompt" style="--topic:${c}">${esc(cleanText(x.prompt||''))}</div>${visualHtml(x.visual)}<h3 class="section-label">Câu trả lời</h3><div class="answer">${answerHtml(x.answer||'',x.qaBands||[])}</div>${x.qaBands&&x.qaBands.length?'':bandHtml(x.band)}${x.phrases&&x.phrases.length?`<h3 class="section-label">Cụm từ nổi bật và giải nghĩa</h3><div class="phrases">${x.phrases.map(p=>`<div class="phrase"><b>${esc(cleanText(p.en))}</b><span>${esc(cleanText(p.vi))}</span></div>`).join('')}</div>`:''}</main>`;
    detail.classList.add('open');shade.classList.add('open');document.body.style.overflow='hidden';
    detail.querySelector('#close').onclick=close;detail.querySelector('#prev').onclick=()=>{if(visible.length)open(visible[(idx-1+visible.length)%visible.length].id)};detail.querySelector('#next').onclick=()=>{if(visible.length)open(visible[(idx+1)%visible.length].id)};history.replaceState(null,'','#'+id);
  }
