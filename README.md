@@ -1,12 +1,15 @@
-# IELTS 9.0 PWA — v42
+# IELTS 9.0 PWA — v45
 
-Bản này sửa lại phần dàn ý thành khung triển khai thật:
+Bản v45 sửa dàn ý theo đúng tiêu chuẩn “linh hồn bài”:
 
-- Speaking Part 2: Mở bài → từng cue card → nội dung cần nói → chi tiết mở rộng → cảm xúc/chốt đoạn.
-- Speaking Part 1/3: mỗi câu hỏi có trả lời lõi, giải thích và ví dụ/hệ quả.
-- Writing Task 2: mở bài, thân bài theo luận điểm, giải thích, ví dụ/cơ chế, chốt đoạn, kết luận.
-- Writing Task 1 Academic: mở bài, overview, nhóm số liệu 1, nhóm số liệu 2.
-- Writing General: mở thư, từng bullet của đề, kết thư.
-- Không còn sinh dàn ý bằng keyword rời rạc.
+- Không còn cắt câu từ bài mẫu rồi dán vào outline.
+- Dàn ý viết bằng tiếng Việt, mỗi đoạn có 1 ý chính triển khai + 1–2 gạch đầu dòng hỗ trợ.
+- Speaking Part 2 bám cue card: đối tượng → bối cảnh/quan hệ → hành động/chi tiết → cảm xúc/lý do → chốt.
+- Speaking Part 1/3 bám từng câu hỏi: câu trả lời lõi → lý do/cơ chế → ví dụ/hệ quả.
+- Writing Task 2 bám dạng đề: lập trường → luận điểm → cơ chế → ví dụ/hệ quả → kết luận.
+- Writing Academic bám loại biểu đồ/quy trình/bản đồ: mở bài → overview → nhóm dữ liệu/nhóm bước.
+- Writing General bám từng bullet trong đề thư.
+- Đã sửa một số lỗi ngữ pháp chắc chắn trong bài mẫu được phát hiện.
+- Service Worker cache đã tăng lên v45.
 
-Upload đè toàn bộ file trong ZIP lên GitHub Pages. Sau khi upload, mở `index.html?v=42` để tránh cache cũ.
+Upload đè toàn bộ file trong ZIP lên GitHub Pages. Sau đó mở `index.html?v=45` hoặc gỡ app cũ/cài lại nếu điện thoại còn cache.
