@@ -1,23 +1,24 @@
-# IELTS 9.0 PWA — v57
+# IELTS 9.0 PWA — v58
 
-Đã bổ sung 8 Core Stories mới vào IELTS Speaking Part 2, nâng tổng số từ 12 lên 20 bài.
+Đã bổ sung audio mẫu cho 8 Core Stories mới, từ CORE 13 đến CORE 20. Toàn bộ 20 Core Stories hiện đều có nút phát MP3 trực tiếp.
 
-## Core Stories mới
-- CORE 13: The CN Tower in Toronto
-- CORE 14: The Spirit Hunter
-- CORE 15: Chris Bumstead — A Bodybuilding Role Model
-- CORE 16: A White Stuffed Dog from My Childhood
-- CORE 17: Acne Treatment at Thu Cuc Clinics
-- CORE 18: Dogs — An Animal I Gradually Grew to Love
-- CORE 19: Going to the Gym Early
-- CORE 20: ChatGPT — My Everyday AI Assistant
+## Audio mới
+- CORE 13: Building — The CN Tower in Toronto
+- CORE 14: Book — The Spirit Hunter
+- CORE 15: Famous person — Chris Bumstead
+- CORE 16: Toy — A White Stuffed Dog from My Childhood
+- CORE 17: Service — Acne Treatment at Thu Cuc Clinics
+- CORE 18: Animal — Dogs
+- CORE 19: Habit — Going to the Gym Early
+- CORE 20: Technology — ChatGPT
 
 ## Cập nhật repo
 1. Giải nén file ZIP.
-2. Upload đè toàn bộ thư mục và tệp lên repository hiện tại, bao gồm thư mục `audio`.
-3. Mở `index.html?v=57` hoặc tải lại mạnh để nhận Service Worker mới.
+2. Upload đè toàn bộ thư mục và tệp lên repository hiện tại, bắt buộc bao gồm thư mục `audio/core-stories/`.
+3. Mở `index.html?v=58` hoặc tải lại mạnh để nhận Service Worker mới.
 
 ## Chi tiết kỹ thuật
-- 12 Core Stories cũ vẫn giữ nguyên audio tại `audio/core-stories/`.
-- 8 Core Stories mới dùng cùng cấu trúc dữ liệu, giao diện, cụm từ nổi bật và bản dịch như các bài cũ.
-- Cache Service Worker đã đổi sang `ielts90-v57-20-core-stories` để tránh giữ bản cũ.
+- Audio được đặt theo cùng cấu trúc với 12 bài cũ.
+- Dữ liệu CORE 13–20 đã được gắn trường `audio` tương ứng.
+- Cache Service Worker đã đổi sang `ielts90-v58-20-core-stories-audio`.
+- Các request MP3 tiếp tục được phát trực tiếp, không bị Service Worker chặn hoặc trả nhầm cache.
