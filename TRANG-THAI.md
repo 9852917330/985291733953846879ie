@@ -1,24 +1,26 @@
-# Trạng thái nội dung — v77
+# Trạng thái nội dung — v79
 
 ## Kiểm tra tự động
 
 | Hạng mục | Số lượng | Tiêu chuẩn | Kết quả |
 |---|---|---|---|
-| Writing Task 2 | 214 | 250–340 từ, 4–5 đoạn | ✅ 214/214 (250–337 từ) |
+| Writing Task 2 | 272 | 250–340 từ, 4–5 đoạn | ✅ 272/272 (250–337 từ) |
 | Writing Task 1 | 98 | ≥150 từ | ✅ 98/98 |
 | Speaking Part 2 | 222 | ≥190 từ | ✅ 222/222 (207–334 từ) |
 | Speaking Part 3 | 96 | mọi câu trả lời ≥70 từ | ✅ 96/96 |
-| Bảng cụm từ | 720 | khớp hai chiều với chữ in đậm | ✅ 720/720 |
+| Bảng cụm từ | 778 | khớp hai chiều với chữ in đậm | ✅ 778/778 |
 | Bài trùng lặp | — | 0 cặp trùng >50% | ✅ 0 |
 | Kết bài | — | có, và nằm ở đoạn cuối | ✅ 0 lỗi |
 | Chính tả Anh-Anh | — | thống nhất | ✅ 0 lỗi |
 | Lỗi gõ / ngoặc đơn | — | — | ✅ 0 lỗi |
 | Tên nguồn / tác giả | — | không xuất hiện ở đâu | ✅ 0 (cả trong chữ **và trong ảnh**) |
+| Từ nối bị cấm | — | moreover / furthermore / whilst / notwithstanding | ✅ 0 |
+| Lặp từ chuyển ý trong một bài | — | — | ✅ 0 |
 
 ## Test dựng giao diện (jsdom)
 
-18/18 hạng mục đạt, 0 lỗi console: dựng danh sách cả 6 mục, mở bài chi tiết, hiện ảnh biểu đồ,
-nhãn đếm từ, đổi theme hai chiều, tìm kiếm lọc danh sách, hai trang paraphrase.
+18/18 hạng mục đạt, 0 lỗi console: dựng danh sách cả 6 mục (29 · 69 · 272 · 90 · 222 · 96 dòng), mở bài chi tiết,
+hiện ảnh biểu đồ, nhãn đếm từ, đổi theme hai chiều, tìm kiếm lọc danh sách, hai trang paraphrase.
 
 ## Giao diện
 
@@ -38,6 +40,21 @@ nhãn đếm từ, đổi theme hai chiều, tìm kiếm lọc danh sách, hai t
 - 5 ảnh hỏng dữ liệu (`#007`, `#013`, `#035`, `#048`, `#067`) → đã dựng lại từ số liệu có sẵn trong bài.
 - Các dòng ghi nguồn dữ liệu hợp lệ nằm trong biểu đồ gốc được **giữ nguyên** (ví dụ "SOURCE: Defra,
   2004", "Source: The Department for Transport, UK") vì đó là một phần của đề thi thật.
+
+## Độ trong sáng của câu chữ (v79)
+
+- Câu dài nhất trong Task 2: **54 từ** (trước là 68). Câu dài còn lại đều chạy trên trục dấu hai chấm
+  hoặc chấm phẩy nên vẫn dễ theo; câu dài trong Task 1 là mô tả số liệu, đúng cách viết.
+- Văn nói: trung vị **2,1–2,4 dạng rút gọn/100 từ**, 0 mục thiếu. Câu dài trong Part 2 là kiểu nối
+  *and* khi kể chuyện — tự nhiên khi nói, cố ý giữ nguyên.
+- Danh từ trừu tượng mở đầu câu: trung vị **0%**. Liệt kê ba danh từ trừu tượng liên tiếp: 3 trường
+  hợp trong 370 bài, cả ba đều có nghĩa thật.
+
+## Bộ đề forecast
+
+58 đề Writing Task 2 từ bộ forecast 13 tuần (01/6 – 06/9) đã được bổ sung ở v78, thành mục
+`#215`–`#272`. Xem `FORECAST-COVERAGE.md` để tra từng đề forecast ứng với bài mẫu số mấy —
+đối chiếu đủ 121/121 đề.
 
 ## Ghi chú số từ
 

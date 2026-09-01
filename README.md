@@ -205,3 +205,72 @@ không nhìn thấy.
 ### Triển khai
 Giải nén ghi đè vào thư mục gốc repository, chờ Pages deploy, mở `index.html?v=77` và tải lại mạnh
 (hard reload) một lần.
+
+## v78 — Bổ sung 58 đề Writing Task 2 từ bộ forecast
+
+Đối chiếu 121 đề trong 13 tuần forecast (01/6 – 06/9) với ngân hàng 214 đề đang có:
+
+- **25 đề đã có sẵn** dưới cách diễn đạt khác (ví dụ "studying abroad", "museums entertain vs
+  educate", "spread of English", "high salaries", "women in the army").
+- **Hai tuần 17/8–23/8 và 24/8–30/8 đã có đủ** từ bản v66 (mục `#195`–`#214`).
+- **4 đề bị lặp lại giữa các tuần** trong chính bộ forecast.
+- **58 đề còn lại chưa có** → đã viết mới, thành mục `#215`–`#272`.
+
+Writing Task 2 nay có **272 bài**.
+
+### Chuẩn áp dụng cho 58 bài mới
+Giống hệt phần còn lại của ngân hàng, kiểm bằng script trước khi ghép vào:
+250–340 từ (thực tế 259–297), đúng 5 đoạn, lập trường rõ ngay mở bài, đoạn kết thật sự nằm cuối bài,
+4–5 cụm từ ăn điểm khớp hai chiều với bảng từ vựng, chính tả Anh-Anh, không dùng dạng rút gọn,
+không dùng từ nối hoa mỹ (*moreover, furthermore, whilst, notwithstanding*) và không dùng khung
+liệt kê rỗng (*Firstly… Secondly…*). Mỗi bài cũng được đối chiếu với toàn bộ 214 bài cũ **và với
+nhau** để loại trùng ý.
+
+### Tra cứu
+`FORECAST-COVERAGE.md` là bảng đối chiếu từng tuần: mỗi đề forecast trỏ tới số hiệu bài mẫu tương
+ứng trong app. Đối chiếu đủ **121/121 đề**.
+
+### Kiểm tra
+- Quét toàn bộ 778 mục: 0 lỗi số từ, 0 lỗi số đoạn, 0 lỗi kết bài, 0 lệch bảng cụm từ, 0 bài trùng,
+  0 lỗi chính tả, 0 lỗi gõ, 0 ngoặc lệch, 0 tên nguồn/tác giả.
+- Test dựng giao diện headless: 18/18 đạt, 0 lỗi console, danh sách Writing Task 2 dựng đủ 272 dòng.
+
+### Triển khai
+Giải nén ghi đè vào thư mục gốc repository, mở `index.html?v=78` và tải lại mạnh một lần.
+
+## v79 — Rà soát độ trong sáng của câu chữ
+
+Đợt cuối này đo trước rồi mới sửa, thay vì đọc lại mù toàn bộ. Bốn phép đo được chạy trên cả 778 mục:
+độ dài câu và mật độ mệnh đề phụ, mật độ danh từ hoá (`-tion`, `-ment`, `-ity`…), mức độ có ví dụ cụ
+thể để bám vào, và mức độ tự nhiên của văn nói (dạng rút gọn, từ ngữ thuộc văn viết).
+
+### Kết quả đo — phần lớn ngân hàng đã đạt
+- **Văn nói rất chắc.** Trung vị 2,1–2,4 dạng rút gọn trên 100 từ; **0 mục** thiếu hẳn dạng rút gọn.
+  Câu dài trong Part 2 (dài nhất 69 từ) đã kiểm bằng mắt: đó là câu nối bằng *and* theo trình tự kể
+  chuyện — **tự nhiên khi nói**, không phải lỗi, nên giữ nguyên.
+- **Khung liệt kê rỗng gần như không còn**: chỉ 3 trường hợp ba danh từ trừu tượng liên tiếp trong
+  370 bài viết, và cả ba đều có nghĩa thật (*"Discussion, argument and cooperation"*).
+- **Trừu tượng có chỗ bám**: trung vị 0% số câu mở đầu bằng danh từ trừu tượng; chỉ 1 bài vượt 30%,
+  và đọc kỹ thì bài đó vẫn có lập luận và ví dụ cụ thể.
+- **Câu dài trong văn viết phần lớn hợp lệ**: chúng chạy trên trục dấu hai chấm hoặc chấm phẩy nên
+  vẫn dễ theo. Đa số câu bị máy gắn cờ nằm ở Task 1 — mô tả số liệu thì câu dài là đúng cách.
+
+### Đã sửa (22 chỗ)
+- **13 từ nối bị brief cấm hoặc quá sách vở**: 10 × *furthermore*, 1 × *moreover*, 1 × *thereby*,
+  1 × *thus*. Sửa bằng cách viết lại câu để mạch nối nằm trong ngữ pháp, chứ không thay bằng một từ
+  nối khác. Quét lại: **0 từ còn sót**.
+- **4 câu thật sự lê thê** (`#053`, `#055`, `#102`, `#132`) — đều là kiểu nối các mệnh đề độc lập
+  bằng *and* thay vì có trục rõ. Đã tách tại khớp tự nhiên. Câu dài nhất trong Task 2 giảm từ
+  **68 xuống 54 từ**.
+- **3 từ thuộc văn viết lọt vào bài nói**: *pivotal* → *a turning point*, *detrimental impact on the
+  environment* → *real damage to the environment*, *a substantial toll* → *a heavy toll* (đúng
+  collocation hơn). Bảng cụm từ cập nhật theo.
+- **2 bài dùng lặp cùng một từ chuyển ý** (`#079`, `#264`) → đổi một trong hai.
+
+### Kiểm tra cuối
+Toàn bộ 778 mục: 0 lỗi số từ, 0 lỗi số đoạn, 0 lỗi kết bài, 0 lệch bảng cụm từ, 0 bài trùng,
+0 lỗi chính tả, 0 lỗi gõ, 0 ngoặc lệch, 0 tên nguồn/tác giả, 0 từ nối bị cấm, 0 bài lặp từ chuyển ý.
+Test dựng giao diện: 18/18 đạt, 0 lỗi console.
+
+### Triển khai
+Giải nén ghi đè vào thư mục gốc repository, mở `index.html?v=79` và tải lại mạnh một lần.

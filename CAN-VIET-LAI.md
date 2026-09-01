@@ -37,6 +37,12 @@ Mọi script trước đây chỉ quét chữ, nên không nhìn thấy phần n
 - 30 ảnh lộ bài mẫu và bảng từ vựng phía dưới biểu đồ → đã cắt.
 - 5 ảnh hỏng dữ liệu, giải mã ra nhiễu → đã dựng lại từ số liệu bài mẫu đã nêu.
 
+## v78 — bổ sung bộ đề forecast
+
+Đối chiếu 121 đề forecast (13 tuần, 01/6 – 06/9) với ngân hàng: 25 đề đã có dưới cách diễn đạt khác,
+hai tuần 17/8 và 24/8 đã có đủ từ v66, 4 đề lặp trong chính bộ forecast, **58 đề còn lại đã viết mới**
+(`#215`–`#272`). Writing Task 2 nay có 272 bài. Bảng tra cứu: `FORECAST-COVERAGE.md`.
+
 ## Nếu muốn nâng tiếp
 
 Nội dung đã đạt chuẩn cả định lượng lẫn định tính. Ba việc còn có thể làm, xếp theo mức đáng làm:
