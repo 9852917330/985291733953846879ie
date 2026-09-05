@@ -43,6 +43,63 @@ Mọi script trước đây chỉ quét chữ, nên không nhìn thấy phần n
 hai tuần 17/8 và 24/8 đã có đủ từ v66, 4 đề lặp trong chính bộ forecast, **58 đề còn lại đã viết mới**
 (`#215`–`#272`). Writing Task 2 nay có 272 bài. Bảng tra cứu: `FORECAST-COVERAGE.md`.
 
+## v80 — ảnh vỡ và khớp đề/ảnh/bài
+
+Soi mắt cả 75 ảnh: 5 ảnh còn vỡ (`#004`, `#029`, `#039`, `#064`, `#068`) đã dựng lại. Sửa `#051`
+(bài nói "seven problems" nhưng chỉ có năm), `#087` (nhãn chủ đề Education cho đề du lịch → Tourism),
+24 tóm tắt Task 2 viết hoa sai house style, và logo "Focus and Superfocus" còn sót ở `#037`.
+
+## v81 — bổ sung đề từ 7 trang tổng hợp đề thi
+
+Quét 289 đề Writing Task 2 từ bảy trang tổng hợp đề thi. Gộp trùng giữa các trang, rồi đối chiếu với
+272 bài đang có — máy lọc trước, người đọc tay từng đề trong ngân hàng để quyết định. Còn **108 đề thực
+sự mới**, đã viết đủ (`#273`–`#380`). Writing Task 2 nay có 380 bài. Bảng tra cứu: `SITE-COVERAGE.md`.
+
+Trong lúc dựng bảng đối chiếu phát hiện một đề bị lọt khỏi danh sách (`Professional workers like doctors,
+nurses and teachers … paid more than sports and entertainment personalities`) — đã viết bổ sung thành
+`#380`.
+
+Hai công cụ kiểm tra cũng được sửa: bộ bắt "không rõ lập trường" trong `validate.js` bỏ sót nhiều cách
+nêu quan điểm và bắt nhầm dạng đề nguyên nhân/giải pháp; `render-test.js` chỉ kiểm tìm kiếm theo chiều
+lọc sạch, nay kiểm thêm chiều tìm ra đúng kết quả.
+
+## v82 — sửa lỗi đánh số và xác định lại cụm từ ăn điểm
+
+Anh Điền báo lỗi đánh số chủ đề. Truy ngược, đó không phải một lỗi mà là **bốn lỗi độc lập** chồng lên
+nhau, và cả bốn đã sửa:
+
+1. `app-logic.js` in **tên chủ đề** vào mọi dòng danh sách thay vì tên bài — nên 20 bài cùng chủ đề
+   hiện thành 20 dòng chữ giống hệt nhau, chỉ khác con số.
+2. **407 mục chưa có tên bài** (giao diện chưa bao giờ dùng `title` nên không ai phát hiện) → đã viết
+   tên cho đủ 407 mục.
+3. **Nhãn chủ đề bị vụn**: Task 2 có 49 nhãn cho cùng một tập chủ đề → gộp còn 27; Academic thay 42
+   nhãn "General"/"Culture" vô nghĩa bằng 16 nhãn theo nội dung biểu đồ.
+4. **Số thứ tự chạy theo thứ tự nhập liệu**, không theo thứ tự hiển thị → đánh số lại toàn bộ 881 mục
+   và xếp lại mảng dữ liệu theo đúng thứ tự hiển thị.
+
+Đồng thời đổi bộ dò trùng đề từ hệ số Jaccard sang **hệ số chồng lấn**, phát hiện thêm 5 bài trùng
+thật (4 Task 2, 1 Academic) → đã gỡ; 1 cặp Part 1 trùng đề đã viết lại.
+
+### Cụm từ ăn điểm
+
+Dựng bộ chấm dựa trên **tần suất Zipf** để đo xem một cụm được in đậm có thật sự là ngôn ngữ band cao
+hay chỉ là từ thông dụng. Bộ chấm chỉ ra: `by contrast` được in đậm ở 27 bài, `the figure for` ở 8 bài,
+`a peak of` ở 6 bài; 24 cụm lặp ở ≥3 bài; và rất nhiều mục in đậm danh từ chủ đề lấy thẳng từ đề bài.
+
+Đã rà và thay lại cụm cho **186 mục Task 2, 9 đợt Academic, 2 đợt General** — mỗi cụm mới lấy nguyên
+văn từ chính bài đó, có nghĩa tiếng Việt kèm theo. Bộ công cụ `apply-phrase-fixes.js` chỉ ghi file khi
+mọi thay đổi đều hợp lệ (cụm bị gỡ đúng là cụm đang in đậm; cụm mới xuất hiện đúng một lần và không
+chồng lên vùng in đậm khác; mỗi bài còn ≥3 cụm; bảng giải nghĩa khớp hai chiều).
+
+Kết quả: cụm lặp ở ≥3 bài **24 → 0**; cụm toàn từ cực thông dụng **77 → 14** (14 cụm còn lại là thành
+ngữ thật, giữ có chủ đích); cụm chép lại từ ngữ của đề **14 → 5**.
+
+### Việc để lại cho đợt sau — nói thẳng
+
+Đợt này anh yêu cầu rà phần **writing**, nên các cặp cue card Part 2 gần trùng nhau (`#024`/`#025`,
+`#064`/`#201`, `#162`/`#170`, `#165`/`#166`) và 1 cặp Part 1 (nhảy múa; nhà/căn hộ) **chưa xử lý** —
+để lại, không phải đã kiểm rồi bỏ qua.
+
 ## Nếu muốn nâng tiếp
 
 Nội dung đã đạt chuẩn cả định lượng lẫn định tính. Ba việc còn có thể làm, xếp theo mức đáng làm:
@@ -50,6 +107,6 @@ Nội dung đã đạt chuẩn cả định lượng lẫn định tính. Ba vi�
 1. **Kiểm tra số liệu trong 6 ảnh chưa cắt được an toàn** (`#023`, `#038`, `#049`, `#051`, `#063`,
    `#065`): phần lộ bài mẫu ở các ảnh này nằm quá sát nội dung biểu đồ nên cắt tự động sẽ mất dữ liệu.
    Cần cắt tay từng ảnh.
-2. **Đối chiếu số liệu bài viết với ảnh biểu đồ cho toàn bộ 69 mục Academic.** Đợt này chỉ đối chiếu
+2. **Đối chiếu số liệu bài viết với ảnh biểu đồ cho toàn bộ 68 mục Academic.** Đợt này chỉ đối chiếu
    những mục có dấu hiệu mâu thuẫn nội tại. Việc đối chiếu đầy đủ phải mở từng ảnh ra đọc.
 3. **Thu âm phần Speaking.** Thư mục `audio/` hiện chưa có bản ghi cho các bài đã viết lại ở v66–v77.
