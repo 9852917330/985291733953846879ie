@@ -100,6 +100,32 @@ ngữ thật, giữ có chủ đích); cụm chép lại từ ngữ của đề 
 `#064`/`#201`, `#162`/`#170`, `#165`/`#166`) và 1 cặp Part 1 (nhảy múa; nhà/căn hộ) **chưa xử lý** —
 để lại, không phải đã kiểm rồi bỏ qua.
 
+## v83 — gộp trang Speaking Practice
+
+Gộp bản rời (SpeakSharp) thành mục thứ 7 của app, ngay sau Speaking Part 3. Việc khó không phải là
+dán markup vào mà là **vòng đời**: app render lại `#app` mỗi lần đổi hash, còn bản rời chạy một IIFE
+đúng một lần lúc tải trang. Nên tách engine thành `mount()` / `unmount()` và cho `route()` gọi
+`unmount()` ở dòng đầu tiên mọi lần chuyển trang — nếu không, rời trang xong mic vẫn mở và đồng hồ
+vẫn chạy sau lưng trang khác.
+
+Gỡ sạch hệ màu riêng (đen + neon + đỏ + vàng → đúng hai màu của app; trạng thái đang ghi đổi **hình**
+chứ không đổi màu), bỏ font Poppins tải từ Google, bỏ khung `100dvh`, bỏ service worker và nút
+Install riêng, đổi mọi class trùng tên với app sang tiền tố `sp-`, và đưa bảng lịch sử (trước bị
+giấu trong `hidden-maintenance`) ra thành mục **Tiến độ**.
+
+Thêm hai bộ kiểm mới: `audit-colours.js` (đổi mã màu sang HSL, kiểm sắc độ nằm đúng dải của từng
+theme) và `e2e-speaking.js` (Chromium với mic giả: ghi âm thật → đo → chấm với `fetch` giả).
+
+Bắt được một lỗi thật khi soi ảnh chụp: `.sp-recorded` đặt `display:grid` nên đè lên rule mặc định
+cho `[hidden]`, panel phát lại hiện ra khi chưa thu gì. Test cũ chỉ kiểm thuộc tính `hidden` nên
+không thấy — nay kiểm `computed style`.
+
+### Việc để lại — nói thẳng
+
+Ngân hàng 1.000 câu **không trùng câu nào nhưng thiếu đa dạng**: Random/Topics là 10 khuôn × 40 chủ
+đề, Part 1 và Part 3 là 5 khuôn × 30 chủ đề. Chỉ Part 2 (100 câu) và Thought → Speech (200 câu) là
+viết thật. 700 câu của ba bộ kia nên viết lại — chưa làm vì lần này chỉ yêu cầu gộp trang.
+
 ## Nếu muốn nâng tiếp
 
 Nội dung đã đạt chuẩn cả định lượng lẫn định tính. Ba việc còn có thể làm, xếp theo mức đáng làm:
