@@ -495,7 +495,7 @@ Tổng: **2.121 cụm in đậm trên 473 mục Writing**, khớp hai chiều 10
 - `.list { column-width: 330px; column-gap: 22px }` — chia cột trên màn rộng, **1 cột trên điện thoại**.
 - Thêm `.group-head` / `.group-name` / `.group-count` cho tiêu đề nhóm chủ đề.
 - `.item-title` dùng `var(--text)`, `.no` dùng `var(--accent)` — vẫn đúng hai màu, không thêm màu thứ ba.
-# v83 — gộp Speaking Practice vào app
+# v83–v84 — gộp Speaking Practice vào app
 
 Trang luyện nói (bản rời tên SpeakSharp) nay là **mục thứ 7 của app**, đặt ngay sau Speaking Part 3.
 Không còn file rời, không còn service worker riêng, không còn nút Install riêng.
@@ -561,6 +561,45 @@ của trình duyệt cho `[hidden]`**, nên panel phát lại hiện ra ngay khi
 cũ không bắt được vì nó chỉ kiểm thuộc tính `hidden`, không kiểm `computed style`. Đã thêm
 `.sp-main [hidden]{display:none!important}` và một phép kiểm mới đọc `getComputedStyle`.
 
+## v84 — sắp lại vùng điều khiển theo tần suất bấm
+
+Bố cục cũ để bốn nút chế độ tự xuống dòng, nên "Thought → Speech" rơi xuống một hàng riêng và cả cụm
+trông lệch. Nút **API key** thì nằm chung hàng với các nút thao tác dù cả đời chỉ bấm một lần.
+
+Nguyên tắc sắp lại: **xếp theo tần suất bấm, cái bấm nhiều nhất nằm xa bên phải** (tay phải với tới
+mà không phải rướn).
+
+| Nút | Tần suất | Chỗ mới |
+|---|---|---|
+| **Đề khác** | mỗi câu một lần — nhiều nhất | Sát mép phải, rộng nhất hàng (149px ở 390px) |
+| Đồng hồ | thỉnh thoảng | Bên trái nút Đề khác |
+| IELTS part | hiếm | Bên trái đồng hồ, chỉ hiện ở chế độ IELTS |
+| 4 nút chế độ | thỉnh thoảng | Hàng riêng phía trên, chia 4 cột đều nhau |
+| **API key** | **một lần duy nhất** | Lên khu tiêu đề trang, cạnh các pill thống kê |
+
+Tên nút rút gọn cho vừa 4 cột: `Topics → Chủ đề`, `Thought → Speech → Phản xạ`. Nhãn đồng hồ bỏ mũi
+tên và chữ thừa: `30 giây ↓ → 30s`, `Tự do ↑ → Tự do`.
+
+Trên điện thoại `.sp-modes` chuyển từ `flex-wrap` sang **grid 4 cột đều nhau** — không bao giờ xuống
+dòng nữa, bất kể tên nút dài bao nhiêu. Dưới 420px thì ẩn ký hiệu, chỉ còn chữ.
+
+### Kiểm bằng đo đạc thật, không bằng mắt
+
+jsdom không có bộ dựng layout nên không đo được chuyện xuống dòng. Thêm `scripts/layout-speaking.js`
+mở Chromium ở **8 khổ màn hình** (320 → 1440px), bật sẵn chế độ IELTS vì đó là trường hợp chật nhất
+(3 control cùng hàng), rồi đo:
+
+- mọi nút trong một hàng phải cùng `offsetTop` — **đúng một dòng**;
+- trang **không được cuộn ngang**;
+- nút Đề khác phải là control cuối cùng và **cách mép phải 0px**;
+- ô tap nhỏ nhất **≥32px**;
+- chữ trong `<select>` **không được chạy xuống dưới mũi tên dropdown** — đo bằng cách dựng một span
+  ẩn cùng font, so bề rộng chữ với bề rộng lòng ô.
+
+Phép kiểm cuối bắt được một lỗi thật: ở 390px chữ "Part 1" bị mũi tên đè thành "Part ]". Đã nới
+`padding-right` của select trên mobile.
+
+Kết quả: **8/8 khổ màn hình đạt.**
 ## Kiểm tra
 
 Ngoài 21 hạng mục jsdom cũ, v83 thêm 7 hạng mục cho trang mới, và thêm một bộ kiểm chạy thật:
@@ -602,4 +641,4 @@ Mở chủ đề nào cũng thấy đúng 10 câu đó, chỉ thay danh từ. Lu
 quen phản xạ. Chưa sửa vì lần này chỉ yêu cầu gộp trang.
 
 ## Triển khai
-Giải nén ghi đè vào thư mục gốc repository, mở `index.html?v=83` và tải lại mạnh một lần.
+Giải nén ghi đè vào thư mục gốc repository, mở `index.html?v=84` và tải lại mạnh một lần.

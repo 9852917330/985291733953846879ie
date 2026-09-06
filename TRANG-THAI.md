@@ -1,4 +1,4 @@
-# Trạng thái nội dung — v83
+# Trạng thái nội dung — v84
 
 ## Kiểm tra tự động
 
@@ -37,15 +37,38 @@ trang Speaking Practice:
 - **Trang không mang màu riêng**: quét CSS của trang, không được có một mã màu cứng nào, không
   được nạp font ngoài.
 
-Thêm hai bộ kiểm ngoài jsdom:
+Thêm ba bộ kiểm ngoài jsdom:
 
 - `scripts/audit-colours.js` — đổi mọi mã màu trong stylesheet sang HSL và kiểm sắc độ: theme sáng
   chỉ được nằm trong dải xanh dương, theme tối chỉ trong dải mint, ngoài hai khối token thì không
   rule nào được mang sắc độ. **Đạt: 21 màu, 0 màu lạc, 0 font ngoài.**
+- `scripts/layout-speaking.js` — mở Chromium ở **8 khổ màn hình** (320 → 1440px), bật chế độ IELTS
+  cho chật nhất, rồi đo: mọi nút trong một hàng cùng `offsetTop` (không xuống dòng), trang không cuộn
+  ngang, nút **Đề khác** là control cuối và cách mép phải 0px, ô tap ≥32px, và chữ trong `<select>`
+  không chạy xuống dưới mũi tên dropdown. **Đạt 8/8 khổ.**
 - `scripts/e2e-speaking.js` — chạy Chromium với **mic giả**, ghi âm thật qua `MediaRecorder`, dừng,
   giải mã, đo chỉ số, rồi chấm với `fetch` được thay bằng phản hồi mẫu. Kiểm nút đổi trạng thái,
   đồng hồ chạy, 4 chỉ số cục bộ hiện ra, có nguồn phát lại, 8 ô điểm, 9 khối nhận xét, transcript,
   bản band 9, và lịch sử tăng đúng 1 dòng. **Đạt, 0 lỗi trang.**
+
+## v84 — sắp lại vùng điều khiển theo tần suất bấm
+
+Xếp lại theo nguyên tắc **bấm càng nhiều thì càng nằm về bên phải** (thuận tay phải):
+
+| Nút | Tần suất | Chỗ mới |
+|---|---|---|
+| **Đề khác** | mỗi câu một lần | Sát mép phải, rộng nhất hàng |
+| Đồng hồ | thỉnh thoảng | Trái nút Đề khác |
+| IELTS part | hiếm | Trái đồng hồ, chỉ hiện ở chế độ IELTS |
+| 4 nút chế độ | thỉnh thoảng | Hàng trên, chia 4 cột đều nhau |
+| **API key** | **một lần duy nhất** | Lên khu tiêu đề trang |
+
+Rút gọn tên cho vừa 4 cột: `Topics → Chủ đề`, `Thought → Speech → Phản xạ`; nhãn đồng hồ bỏ mũi tên
+(`30 giây ↓ → 30s`). Trên điện thoại hàng chế độ chuyển từ `flex-wrap` sang **grid 4 cột đều nhau**,
+không bao giờ xuống dòng nữa; dưới 420px ẩn ký hiệu, chỉ còn chữ.
+
+Bộ đo layout bắt được một lỗi thật: ở 390px chữ "Part 1" bị mũi tên dropdown đè thành "Part ]" — đã
+nới `padding-right` của select trên mobile.
 
 ## v83 — gộp Speaking Practice vào app
 

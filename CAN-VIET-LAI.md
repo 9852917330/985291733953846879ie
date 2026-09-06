@@ -120,6 +120,17 @@ Bắt được một lỗi thật khi soi ảnh chụp: `.sp-recorded` đặt `d
 cho `[hidden]`, panel phát lại hiện ra khi chưa thu gì. Test cũ chỉ kiểm thuộc tính `hidden` nên
 không thấy — nay kiểm `computed style`.
 
+### v84 — sắp lại vùng điều khiển
+
+Anh Điền phản hồi cụm nút bị xuống dòng và lệch. Sắp lại theo **tần suất bấm**: Đề khác (bấm mỗi câu)
+đẩy sát mép phải và cho rộng nhất, đồng hồ và IELTS part về bên trái, API key (bấm một lần duy nhất)
+lên khu tiêu đề trang. Hàng chế độ chuyển sang grid 4 cột đều nhau nên không còn xuống dòng, tên rút
+gọn `Topics → Chủ đề` và `Thought → Speech → Phản xạ`.
+
+Thêm `scripts/layout-speaking.js` đo thật trong Chromium ở 8 khổ màn hình — jsdom không dựng layout
+nên không đo được chuyện xuống dòng. Nó bắt luôn một lỗi: ở 390px chữ "Part 1" bị mũi tên dropdown
+đè mất chữ số.
+
 ### Việc để lại — nói thẳng
 
 Ngân hàng 1.000 câu **không trùng câu nào nhưng thiếu đa dạng**: Random/Topics là 10 khuôn × 40 chủ
